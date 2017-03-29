@@ -17,14 +17,18 @@ class AFFPlayerController : public APlayerController
 private:
 	UPROPERTY()
 	AFFCharacter* FFCharacter;
+
 	// inputs
 	void Forward(float Val);
 	void Strafe(float Val);
 	void LookX(float Rate);
 	void LookY(float Rate);
 
-
 public:
+	UPROPERTY(BlueprintReadOnly, GlobalConfig, Category = Camera)
+	float ConfigFOV;
+
+	virtual void SetPawn(APawn* NewPawn);
 	UFUNCTION(BlueprintCallable, Category = PlayerController)
 	virtual AFFCharacter* GetFFCharacter();
 

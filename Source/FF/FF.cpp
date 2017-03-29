@@ -2,4 +2,14 @@
 
 #include "FF.h"
 
-IMPLEMENT_PRIMARY_GAME_MODULE( FDefaultGameModuleImpl, FF, "FF" );
+
+// well thats unfortunate naming
+class FFFModule : public FDefaultGameModuleImpl
+{
+	
+};
+
+IMPLEMENT_PRIMARY_GAME_MODULE(FFFModule, FortressForever, "FortressForever" );
+
+
+DEFINE_LOG_CATEGORY(FF);

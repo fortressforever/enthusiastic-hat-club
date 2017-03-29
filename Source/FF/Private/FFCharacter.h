@@ -3,27 +3,32 @@
 #pragma once
 
 #include "GameFramework/Character.h"
+#include "FFCharacterMovement.h"
+
 #include "FFCharacter.generated.h"
 
-UCLASS()
+
+UCLASS(config=Game)
 class AFFCharacter : public ACharacter
 {
-	GENERATED_BODY()
-
+	GENERATED_UCLASS_BODY()
 
 	// FPS camera
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	class UCameraComponent* CameraComponent;
 
-public:
-	// Sets default values for this character's properties
-	AFFCharacter();
+	/** Cached casted FF CharacterMovement */
+	UPROPERTY(Category = Character, VisibleAnywhere, BlueprintReadOnly)
+	class UFFCharacterMovement* FFCharacterMovement;
 
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
 public:	
+	// Sets default values for this character's properties
+	AFFCharacter();
+
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 

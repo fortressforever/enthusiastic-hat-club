@@ -3,7 +3,6 @@
 #include "FF.h"
 #include "FFPlayerController.h"
 
-
 // Called to bind functionality to input
 void AFFPlayerController::SetupInputComponent()
 {
@@ -50,6 +49,28 @@ void AFFPlayerController::LookY(float Rate)
 {
 	// calculate delta for this frame from the rate information
 	//AddControllerPitchInput(Rate * MouseSensitivityRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AFFPlayerController::SetPawn(APawn* NewPawn)
+{
+	if (NewPawn == NULL)
+	{
+		// death cam specjump etc
+	}
+
+	AController::SetPawn(NewPawn);
+
+	FFCharacter = Cast<AFFCharacter>(NewPawn);
+
+	if (Player && IsLocalPlayerController())
+	{
+		if (GetPawn() == NULL && PlayerCameraManager != NULL)
+		{
+			// clear FOV incase they die zoomed etc
+			FOV(ConfigFOV);
+		}
+		// TODO: death cam/ragdoll etc
+	}
 }
 
 AFFCharacter* AFFPlayerController::GetFFCharacter()

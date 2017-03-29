@@ -14,7 +14,7 @@ AFFGameModeBase::AFFGameModeBase() : Super()
 	else
 	{
 		DefaultPawnClass = ADefaultPawn::StaticClass();
-		UE_LOG(LogTemp, Error, TEXT("Failed to find FFCharacterBase, check data blueprint exists"));
+		UE_LOG(FF, Error, TEXT("Failed to find FFCharacterBase, check data blueprint exists"));
 	}
 
 

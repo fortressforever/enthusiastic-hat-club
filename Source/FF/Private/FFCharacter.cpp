@@ -5,7 +5,8 @@
 
 
 // Sets default values
-AFFCharacter::AFFCharacter()
+AFFCharacter::AFFCharacter(const class FObjectInitializer& ObjectInitializer)
+	: Super(ObjectInitializer.SetDefaultSubobjectClass<UFFCharacterMovement>(ACharacter::CharacterMovementComponentName))
 {
  	// Set this character to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
@@ -15,6 +16,8 @@ AFFCharacter::AFFCharacter()
 	CameraComponent->RelativeLocation = FVector(-39.56f, 1.75f, 64.f); 
 	CameraComponent->SetupAttachment(GetCapsuleComponent());
 	CameraComponent->bUsePawnControlRotation = true;
+
+	FFCharacterMovement = Cast<UFFCharacterMovement>(GetCharacterMovement());
 }
 
 // Called when the game starts or when spawned
