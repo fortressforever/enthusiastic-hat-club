@@ -1,0 +1,45 @@
+#ue4 generated binaries and crap
+
+/Build
+/Binaries
+/DerivedDataCache
+/Intermediate
+/Saved
+
+enc_temp_folder/
+*.db
+*.opendb
+
+# Ignore project files in the root
+/*.sln
+/*.xcodeproj
+/*/*.sln
+/*/*.xcodeproj
+
+# Ignore local user Visual Studio files in any folder
+*.suo
+*.opensdf
+*.sdf
+
+# Standard binary files
+*.lib
+*.idb
+*.a
+*.dll
+*.exe
+*.png
+*.bz2
+*.psd
+*.gif
+*.zip
+*.tga
+*.dylib
+*.gz
+*.so
+*.jar
+*.mp4
+*.pak
+*.bmp
+*.obj
+*.pdb
+**/*.framework/**
