@@ -23,6 +23,8 @@ private:
 	void Strafe(float Val);
 	void LookX(float Rate);
 	void LookY(float Rate);
+	void JumpPressed();
+	void JumpReleased();
 
 public:
 	UPROPERTY(BlueprintReadOnly, GlobalConfig, Category = Camera)

@@ -11,8 +11,8 @@ void AFFPlayerController::SetupInputComponent()
 	Super::SetupInputComponent();
 
 	// TODO: the base ACharacter jump handling kinda stinks
-	//InputComponent->BindAction("Jump", IE_Pressed, this, &AFFPlayerController::InputJump);
-	//InputComponent->BindAction("Jump", IE_Released, this, &AFFPlayerController::InputStopJumping);
+	InputComponent->BindAction("Jump", IE_Pressed, this, &AFFPlayerController::JumpPressed);
+	InputComponent->BindAction("Jump", IE_Released, this, &AFFPlayerController::JumpReleased);
 	InputComponent->BindAxis("Forward", this, &AFFPlayerController::Forward);
 	InputComponent->BindAxis("Strafe", this, &AFFPlayerController::Strafe);
 	InputComponent->BindAxis("LookX", this, &AFFPlayerController::LookX);
@@ -21,34 +21,54 @@ void AFFPlayerController::SetupInputComponent()
 	MouseSensitivityRate = 150.0f;
 }
 
+// bind axis has nonconst :-(
+
+// ReSharper disable once CppMemberFunctionMayBeConst
 void AFFPlayerController::Forward(float Value)
 {
 	if (Value != 0.0f)
 	{
-		// add movement in that direction
-		//AddMovementInput(GetActorForwardVector(), Value);
+		FFCharacter->MovementForwardBack(Value);
 	}
 }
 
+// ReSharper disable once CppMemberFunctionMayBeConst
 void AFFPlayerController::Strafe(float Value)
 {
 	if (Value != 0.0f)
 	{
-		// add movement in that direction
-		//AddMovementInput(GetActorRightVector(), Value);
+		FFCharacter->MovementStrafe(Value);
 	}
 }
 
 void AFFPlayerController::LookX(float Rate)
 {
 	// calculate delta for this frame from the rate information
-	//AddControllerYawInput(Rate * MouseSensitivityRate * GetWorld()->GetDeltaSeconds());
+	AddYawInput(Rate * MouseSensitivityRate * GetWorld()->GetDeltaSeconds());
 }
 
 void AFFPlayerController::LookY(float Rate)
 {
 	// calculate delta for this frame from the rate information
-	//AddControllerPitchInput(Rate * MouseSensitivityRate * GetWorld()->GetDeltaSeconds());
+	AddPitchInput(Rate * MouseSensitivityRate * GetWorld()->GetDeltaSeconds());
+}
+
+void AFFPlayerController::JumpPressed()
+{
+	if (FFCharacter != NULL && !IsMoveInputIgnored())
+	{
+		//FFCharacter->bPressedJump = true;
+		FFCharacter->Jump();
+	}
+}
+
+void AFFPlayerController::JumpReleased()
+{
+	if (FFCharacter)
+	{
+		//FFCharacter->bPressedJump = false;
+		FFCharacter->StopJumping();
+	}
 }
 
 void AFFPlayerController::SetPawn(APawn* NewPawn)
@@ -75,6 +95,7 @@ void AFFPlayerController::SetPawn(APawn* NewPawn)
 
 AFFCharacter* AFFPlayerController::GetFFCharacter()
 {
-	// TODO:
-	return nullptr;
+	// for BPs
+	return FFCharacter;
 }
+

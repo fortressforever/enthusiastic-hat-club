@@ -31,5 +31,21 @@ void AFFCharacter::BeginPlay()
 void AFFCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+}
 
+// movement section
+// NOTE: non-axis movement is triggered from controller which checks 0 value locks
+// its kind of a round-about way to handle input:
+// 1 - controller bindings 
+// 2 - character adds movement input value
+// 3 - character movement triggered 
+// mouse skips right to adding input value
+void AFFCharacter::MovementForwardBack(float Value)
+{
+	AddMovementInput(GetActorForwardVector(), Value);
+}
+
+void AFFCharacter::MovementStrafe(float Value)
+{
+	AddMovementInput(GetActorRightVector(), Value);
 }

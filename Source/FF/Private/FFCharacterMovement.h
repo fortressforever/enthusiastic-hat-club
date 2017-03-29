@@ -12,4 +12,7 @@ UCLASS()
 class FF_API UFFCharacterMovement : public UCharacterMovementComponent
 {
 	GENERATED_UCLASS_BODY()
+
+public:
+	bool DoJump(bool bReplayingMoves);
 };

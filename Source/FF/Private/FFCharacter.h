@@ -33,4 +33,8 @@ public:
 	virtual void Tick(float DeltaTime) override;
 
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
+
+	// Movement commands from input
+	void MovementStrafe(float Value);
+	void MovementForwardBack(float Value);
 };
