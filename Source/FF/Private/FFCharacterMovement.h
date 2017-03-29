@@ -9,11 +9,7 @@
  * 
  */
 UCLASS()
-class UFFCharacterMovement : public UCharacterMovementComponent
+class FF_API UFFCharacterMovement : public UCharacterMovementComponent
 {
-	GENERATED_BODY()
-	
-	
-	
-	
+	GENERATED_UCLASS_BODY()
 };
