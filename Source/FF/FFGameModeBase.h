@@ -12,8 +12,7 @@ UCLASS()
 class FF_API AFFGameModeBase : public AGameModeBase
 {
 	GENERATED_BODY()
-	
-	
-	
-	
+
+public:
+	AFFGameModeBase();
 };

@@ -10,6 +10,11 @@ class AFFCharacter : public ACharacter
 {
 	GENERATED_BODY()
 
+
+	// FPS camera
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	class UCameraComponent* CameraComponent;
+
 public:
 	// Sets default values for this character's properties
 	AFFCharacter();
@@ -25,6 +30,6 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	
+	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
 	
 };
