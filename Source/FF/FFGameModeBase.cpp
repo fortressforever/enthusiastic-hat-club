@@ -2,6 +2,7 @@
 
 #include "FF.h"
 #include "FFGameModeBase.h"
+#include "Private/FFPlayerController.h"
 
 AFFGameModeBase::AFFGameModeBase() : Super()
 {
@@ -15,4 +16,7 @@ AFFGameModeBase::AFFGameModeBase() : Super()
 		DefaultPawnClass = ADefaultPawn::StaticClass();
 		UE_LOG(LogTemp, Error, TEXT("Failed to find FFCharacterBase, check data blueprint exists"));
 	}
+
+
+	PlayerControllerClass = AFFPlayerController::StaticClass();
 }
