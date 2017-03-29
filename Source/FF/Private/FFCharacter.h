@@ -23,13 +23,23 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
+
+	// APawn interface
+	virtual void SetupPlayerInputComponent(UInputComponent* InputComponent) override;
+	// End of APawn interface
+
+	// inputs
+	void InputForward(float Val);
+	void InputStrafe(float Val);
+	void InputLookX(float Rate);
+	void InputLookY(float Rate);
+
+	// mouse sensitivity multiplier (in effective degrees / sec)
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Camera)
+	float MouseSensitivityRate;
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	// Called to bind functionality to input
-	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
-
 	FORCEINLINE class UCameraComponent* GetFirstPersonCameraComponent() const { return CameraComponent; }
-	
 };
